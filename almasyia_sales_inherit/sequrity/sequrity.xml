@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_engineering" model="ir.module.category">
+        <field name="name">Engineering</field>
+        <field name="sequence">9</field>
+    </record>
+    <data noupdate="1">
+        <record id="engineering_management" model="res.groups">
+            <field name="name">Engineering Management</field>
+            <field name="category_id" ref="module_category_engineering"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_construction_project_user,access.construction.project.user,model_construction_project,base.group_user,1,1,1,1
+access_construction_project_manager,access.construction.project.manager,model_construction_project,base.group_system,1,1,1,1
+access_construction_project_engineering,access.construction.project.engineering,model_construction_project,engineering_management,1,1,1,1

@@ -1,0 +1,68 @@
+<odoo>
+    <data>
+        <!-- Define a new form view for SaleOrder -->
+        <record id="view_sale_order_form_inherited" model="ir.ui.view">
+            <field name="name">sale.order.form.inherited</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>
+            <field name="arch" type="xml">
+                <!-- Replace the state field with a statusbar widget -->
+                <xpath expr="//header/field[@name='state']" position="replace">
+                    <field name="state"
+                           widget="statusbar"
+                           statusbar_visible="draft,engineering_review,manager_review,approved,refused,sale"
+                    />
+                </xpath>
+
+                <!-- Add the project_id field -->
+                <xpath expr="//sheet/group[1]" position="after">
+                    <group>
+                        <field name="project_id"/>
+                    </group>
+                </xpath>
+
+                <!-- Modify the attributes of the second action_confirm button -->
+                <xpath expr="//header/button[@name='action_confirm'][2]" position="after">
+                    <button name="action_submit_to_engineering"
+                            id="submit_eng"
+                            string="Send to Eng."
+                            invisible="state not in ('draft')"
+                            context="{'validate_analytic': True}"
+                            type="object"/>
+
+                    <button name="action_approve_engineering"
+                            id="eng_appr"
+                            string="Eng.Conf"
+                            class="btn-primary"
+                            invisible="state not in ('engineering_review')"
+                            context="{'validate_analytic': True}"
+                            type="object"/>
+
+                    <button name="action_refuse_engineering"
+                            id="eng_refuse"
+                            string="Reject"
+                            class="btn-primary"
+                            invisible="state not in ('engineering_review','manager_review')"
+                            context="{'validate_analytic': True}"
+                            type="object"/>
+
+                    <button name="action_submit_to_manager"
+                            id="eng_to_mgr_submit"
+                            string="Send to Mngmnt"
+                            class="btn-primary"
+                            invisible="state not in ('engineering_review')"
+                            context="{'validate_analytic': True}"
+                            type="object"/>
+
+                    <button name="action_reset_to_draft"
+                            id="reset_to_draft"
+                            string="Reset to Draft"
+                            class="btn-primary"
+                            invisible="state not in ('engineering_review','manager_review')"
+                            context="{'validate_analytic': True}"
+                            type="object"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
