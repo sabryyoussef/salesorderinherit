@@ -16,12 +16,7 @@
         'views/construction_project_views.xml',
         'views/statusaddview.xml',
     ],
-    'demo': [
-        'security/ir.model.access.csv',
-        'views/res_partner_views.xml',
-        'views/construction_project_views.xml',
-        'data/approval_demo.xml',
-    ],
+
     'application': True,
     'installable': True,
     'license': 'LGPL-3',
